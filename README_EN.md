@@ -38,7 +38,7 @@ pip install pandas google-generativeai tqdm openpyxl
 ## Usage
 
 ```bash
-python audio_classifier.py --directory "AUDIO_DIRECTORY" --api_key "YOUR_GEMINI_API_KEY" [--output "OUTPUT_FILE_PATH"] [--max_retries RETRY_COUNT] [--retry_delay WAIT_SECONDS] [--proxy "PROXY_SERVER_ADDRESS"]
+python audio_classifier.py --directory "AUDIO_DIRECTORY" --api_key "YOUR_GEMINI_API_KEY" [--output "OUTPUT_FILE_PATH"] [--max_retries RETRY_COUNT] [--retry_delay WAIT_SECONDS] [--proxy "PROXY_SERVER_ADDRESS"] [--model "MODEL_NAME"]
 ```
 
 ### Parameters
@@ -50,6 +50,7 @@ python audio_classifier.py --directory "AUDIO_DIRECTORY" --api_key "YOUR_GEMINI_
 - `--retry_delay`, `-t`: Wait time in seconds before retrying after an API request failure (optional, defaults to 60)
 - `--category_dir`, `-c`: Directory for storing categorized audio files (optional, defaults to "分类音频" folder in the current directory)
 - `--proxy`, `-p`: HTTP/HTTPS proxy server address (optional, format: http://127.0.0.1:7890)
+- `--model`, `-m`: Gemini model name to use (optional, defaults to gemini-2.0-flash-001)
 
 ### Proxy Settings
 

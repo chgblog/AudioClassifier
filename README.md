@@ -50,6 +50,7 @@ python audio_classifier.py --directory "音频文件目录" --api_key "您的Gem
 - `--retry_delay`, `-t`: API请求失败后重试的等待时间，单位为秒（可选，默认为60）
 - `--category_dir`, `-c`: 分类后的音频文件存放目录（可选，默认为当前目录下的"分类音频"文件夹）
 - `--proxy`, `-p`: HTTP/HTTPS代理服务器地址（可选，格式如：http://127.0.0.1:7890）
+- `--model`, `-m`: 使用的Gemini模型名称（可选，默认为gemini-2.0-flash-001）
 
 ### 代理设置说明
 

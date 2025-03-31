@@ -24,7 +24,7 @@ SUPPORTED_AUDIO_FORMATS = [
     '.mp3', '.wav', '.m4a', '.flac', '.aac', '.ogg'
 ]
 
-def setup_gemini_api(api_key, proxy=None):
+def setup_gemini_api(api_key, model_name='gemini-2.0-flash-001', proxy=None):
     """设置Gemini API"""
     try:
         # 配置API密钥
@@ -38,8 +38,9 @@ def setup_gemini_api(api_key, proxy=None):
             os.environ['HTTPS_PROXY'] = proxy
             logger.info(f"已设置代理: {proxy}")
         
-        # 使用支持音频的模型
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        # 使用指定的模型
+        logger.info(f"使用模型: {model_name}")
+        model = genai.GenerativeModel(model_name)
         return model
     except Exception as e:
         logger.error(f"设置Gemini API时出错: {str(e)}")
@@ -224,6 +225,7 @@ def main():
     parser.add_argument('--retry_delay', '-t', type=int, default=60, help='API请求失败后重试的等待时间(秒)')
     parser.add_argument('--category_dir', '-c', type=str, default='分类音频', help='分类后的音频文件存放目录')
     parser.add_argument('--proxy', '-p', type=str, help='HTTP/HTTPS代理服务器地址，格式如：http://127.0.0.1:7890')
+    parser.add_argument('--model', '-m', type=str, default='gemini-2.0-flash-001', help='使用的Gemini模型名称，默认为gemini-2.0-flash-001')
     
     args = parser.parse_args()
     
@@ -234,7 +236,7 @@ def main():
     
     try:
         # 设置Gemini API
-        model = setup_gemini_api(args.api_key, args.proxy)
+        model = setup_gemini_api(args.api_key, args.model, args.proxy)
         
         # 获取音频文件
         audio_files, unsupported_files = get_audio_files(args.directory)
